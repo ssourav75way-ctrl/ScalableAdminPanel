@@ -1,0 +1,18 @@
+<div class="user-dashboard">
+  <div class="welcome-section">
+    <h1>Hello, Standard User</h1>
+    <p>Welcome to your personal dashboard. Here is your progress.</p>
+  </div>
+
+  <div class="task-grid">
+    @for (task of myTasks; track task.title) {
+      <div class="task-card">
+        <div class="status-icon" [class]="task.status"></div>
+        <div class="task-info">
+          <h3>{{ task.title }}</h3>
+          <span class="status-label">{{ task.status | titlecase }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

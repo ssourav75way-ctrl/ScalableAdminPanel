@@ -1,0 +1,108 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  color: #fff;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 48px;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.75rem;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4);
+}
+
+.login-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.025em;
+}
+
+.login-header p {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.role-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+}
+
+.btn-icon {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-text strong {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.btn-text span {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #475569;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

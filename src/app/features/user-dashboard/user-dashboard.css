@@ -1,0 +1,58 @@
+.user-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.welcome-section p {
+  color: #94a3b8;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.task-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.status-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.status-icon.completed {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.status-icon.pending {
+  background: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.task-info h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.status-label {
+  font-size: 0.8rem;
+  color: #64748b;
+}

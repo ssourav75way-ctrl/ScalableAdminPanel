@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">AG</div>
+      <h1>Enterprise RBAC</h1>
+      <p>Select your role to continue</p>
+    </div>
+    
+    <div class="login-actions">
+      <button class="role-btn admin-btn" (click)="onLogin('admin')">
+        <span class="btn-icon">🛡️</span>
+        <div class="btn-text">
+          <strong>Login as Admin</strong>
+          <span>Full system access</span>
+        </div>
+      </button>
+
+      <button class="role-btn user-btn" (click)="onLogin('user')">
+        <span class="btn-icon">👤</span>
+        <div class="btn-text">
+          <strong>Login as User</strong>
+          <span>Standard user access</span>
+        </div>
+      </button>
+    </div>
+    
+    <div class="login-footer">
+      <span>Enterprise Secure Gateway v2.0</span>
+    </div>
+  </div>
+</div>

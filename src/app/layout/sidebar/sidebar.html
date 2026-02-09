@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <div class="logo">
+    <div class="logo-box">AG</div>
+    <span class="logo-text">EnterpriseApp</span>
+  </div>
+  <nav class="nav">
+    @for (item of navItems(); track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active" class="nav-item">
+        <span class="icon">{{ item.icon }}</span>
+        <span class="label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+  <div class="sidebar-footer">
+    <div class="version">v1.2.0</div>
+  </div>
+</div>
