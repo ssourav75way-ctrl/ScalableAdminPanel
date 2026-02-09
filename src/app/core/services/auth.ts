@@ -66,7 +66,9 @@ export class AuthService {
 
     try {
       const response = await firstValueFrom(
-        this.http.post<AuthResponse>(`${environment.apiUrl}/auth/signup`, data)
+        this.http.post<AuthResponse>(`${environment.apiUrl}/auth/signup`, data, {
+          withCredentials: true
+        })
       );
 
       this.handleAuthSuccess(response);
@@ -84,7 +86,9 @@ export class AuthService {
 
     try {
       const response = await firstValueFrom(
-        this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, data)
+        this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, data, {
+          withCredentials: true
+        })
       );
 
       this.handleAuthSuccess(response);
@@ -93,6 +97,43 @@ export class AuthService {
       this.isLoading.set(false);
       this.error.set(err?.error?.message || 'Login failed. Please try again.');
       return false;
+    }
+  }
+
+  async refreshToken(): Promise<boolean> {
+    try {
+      const response = await firstValueFrom(
+        this.http.post<{ success: boolean; data: { accessToken: string } }>(
+          `${environment.apiUrl}/auth/refresh`,
+          {},
+          { withCredentials: true }
+        )
+      );
+
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem(this.AUTH_TOKEN, response.data.accessToken);
+      }
+      return true;
+    } catch {
+      this.logout();
+      return false;
+    }
+  }
+
+  async getMe(): Promise<void> {
+    try {
+      const response = await firstValueFrom(
+        this.http.get<{ success: boolean; data: { user: User } }>(
+          `${environment.apiUrl}/auth/me`,
+          { withCredentials: true }
+        )
+      );
+      this.currentUser.set(response.data.user);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem(this.USER_KEY, JSON.stringify(response.data.user));
+      }
+    } catch {
+      // If /me fails, we might be invalid
     }
   }
 
