@@ -7,7 +7,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.login-container {
+.signup-container {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
@@ -79,13 +79,13 @@ button:disabled {
   font-size: 0.875rem;
 }
 
-.signup-link {
+.login-link {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
 }
 
-.signup-link a {
+.login-link a {
   color: #000;
   text-decoration: underline;
   cursor: pointer;

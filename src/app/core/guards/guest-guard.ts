@@ -2,24 +2,18 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth';
 
-export const roleGuard: CanActivateFn = (route, state) => {
+export const guestGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
   const user = authService.currentUser();
 
-  if (!user) {
-    return router.createUrlTree(['/login']);
-  }
-
-  const expectedRole = route.data['role'] as string;
-  
-  if (user.role.toUpperCase() === expectedRole.toUpperCase()) {
-    return true;
-  } else {
-    if (user.role.toUpperCase() === 'ADMIN') {
+  if (authService.isAuthenticated()) {
+    if (user?.role.toUpperCase() === 'ADMIN') {
       return router.createUrlTree(['/admin/dashboard']);
     } else {
       return router.createUrlTree(['/user/dashboard']);
     }
   }
+
+  return true;
 };

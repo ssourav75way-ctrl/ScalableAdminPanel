@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { AuthService } from '../../../core/services/auth';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, UserRole } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -12,9 +14,29 @@ export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  onLogin(role: UserRole) {
-    this.authService.login(role);
-    const destination = role === 'admin' ? '/admin/dashboard' : '/user/dashboard';
-    this.router.navigate([destination]);
+  email = signal('');
+  password = signal('');
+
+  isLoading = this.authService.isLoading;
+  error = this.authService.error;
+
+  async onLogin() {
+    const email = this.email();
+    const password = this.password();
+
+    if (!email || !password) {
+      this.authService.error.set('Please enter email and password');
+      return;
+    }
+
+    const success = await this.authService.login({ email, password });
+    if (success) {
+      this.email.set('');
+      this.password.set('');
+    }
+  }
+
+  goToSignup() {
+    this.router.navigate(['/signup']);
   }
 }

@@ -1,31 +1,35 @@
 <div class="login-container">
   <div class="login-card">
-    <div class="login-header">
-      <div class="logo">AG</div>
-      <h1>Enterprise RBAC</h1>
-      <p>Select your role to continue</p>
-    </div>
-    
-    <div class="login-actions">
-      <button class="role-btn admin-btn" (click)="onLogin('admin')">
-        <span class="btn-icon">🛡️</span>
-        <div class="btn-text">
-          <strong>Login as Admin</strong>
-          <span>Full system access</span>
-        </div>
-      </button>
+    <h1>Login</h1>
 
-      <button class="role-btn user-btn" (click)="onLogin('user')">
-        <span class="btn-icon">👤</span>
-        <div class="btn-text">
-          <strong>Login as User</strong>
-          <span>Standard user access</span>
-        </div>
-      </button>
+    @if (error()) {
+      <div class="error-message">{{ error() }}</div>
+    }
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        [(ngModel)]="email"
+        [disabled]="isLoading()"
+      />
     </div>
-    
-    <div class="login-footer">
-      <span>Enterprise Secure Gateway v2.0</span>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        placeholder="Enter your password"
+        [(ngModel)]="password"
+        [disabled]="isLoading()"
+      />
     </div>
+
+    <button class="login-btn" (click)="onLogin()" [disabled]="isLoading()">
+      {{ isLoading() ? 'Logging in...' : 'Login' }}
+    </button>
+
+    <p class="signup-link">Don't have an account? <a (click)="goToSignup()">Create one here</a></p>
   </div>
 </div>

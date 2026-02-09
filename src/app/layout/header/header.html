@@ -1,11 +1,21 @@
 <header class="header">
   <div class="header-left">
-    <h2 class="page-title">Dashboard Overview</h2>
+    <h2 class="page-title">
+      {{ authService.currentUser()?.role === 'admin' ? 'Admin Panel' : 'My Dashboard' }}
+    </h2>
   </div>
   <div class="header-right">
-    <div class="user-profile">
-      <span>{{ authService.currentUser()?.name || 'Guest' }}</span>
-      <div class="avatar">A</div>
+    <div class="user-info">
+      <div class="user-details">
+        <span class="user-name">{{ authService.currentUser()?.name || 'Guest' }}</span>
+        <span class="user-email">{{ authService.currentUser()?.email }}</span>
+        <span class="user-role" [class]="authService.currentUser()?.role">
+          {{ authService.currentUser()?.role | uppercase }}
+        </span>
+      </div>
+      <div class="avatar" [class]="authService.currentUser()?.role">
+        {{ authService.currentUser()?.name?.charAt(0) || 'U' }}
+      </div>
     </div>
     <button class="logout-btn" (click)="authService.logout()">Logout</button>
   </div>
